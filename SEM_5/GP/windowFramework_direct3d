@@ -1,0 +1,29 @@
+using Microsoft.DirectX.Direct3D;
+
+public partial class form1:form
+{
+	Microsoft.DIrectX.Direct3D.Device.device;
+	public form1()
+	{
+		InitializeComponent();
+		InitDevice();
+	}
+	public void InitDevice()
+	{
+		PresentParameter pp = new PresentParameter();
+		pp.Windowed = true;
+		pp.SwapEffect = SwapEffect.Discard;
+		device= new Microsoft.DirectX.Direct3D.Device(0,DeviceType.Hardware,this,CreateFlags.HardwareVertexProcessing,pp);
+		
+	}
+	private void Render()
+	{
+		device.Clear(ClearFlags.Target,Color.MediumPurple,0,1);
+		device.Present();
+		
+	}
+	private void Form1_Paint(object send r,PaintEventArgs e)
+	{
+		Render();
+	}
+}
